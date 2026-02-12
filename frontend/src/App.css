@@ -1,108 +1,165 @@
-#root {
-  max-width: 1280px;
+/* Container Utama */
+.app-container {
+  max-width: 1200px;
   margin: 0 auto;
   padding: 2rem;
-  text-align: center;
-}
-
-/* CSS pindahan dari App.jsx */
-.app-container {
-  padding: 2rem;
-  font-family: "Inter", system-ui, sans-serif;
+  font-family: "Inter", sans-serif;
+  background-color: #0f0f0f;
+  min-height: 100vh;
+  color: white;
 }
 
 .app-header {
+  text-align: center;
   margin-bottom: 2rem;
-  text-align: right;
 }
 
 .app-title {
   color: #646cff;
+  font-size: 2.5rem;
 }
 
-.loading-text {
+/* Frame Pencarian (Terpisah) */
+.search-frame {
+  background: #1a1a1a;
+  padding: 2rem;
+  border-radius: 16px;
+  border: 1px solid #333;
+  margin-bottom: 3rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.search-box {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.search-input {
+  flex: 1;
+  max-width: 400px;
+  padding: 12px 20px;
+  border-radius: 8px;
+  border: 1px solid #444;
+  background: #0f0f0f;
+  color: white;
+  font-size: 1rem;
+}
+
+.btn-search {
+  padding: 12px 24px;
+  border-radius: 8px;
+  background: #646cff;
+  color: white;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-search:hover {
+  background: #535bf2;
+}
+
+.search-status {
   text-align: center;
+  margin-top: 1rem;
+  color: #888;
 }
 
+/* Katalog & Grid */
 .product-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  /* KUNCI: Membuat 4 Kolom */
+  grid-template-columns: repeat(4, 1fr);
   gap: 1.5rem;
 }
 
 .product-card {
+  background: #1a1a1a;
   border: 1px solid #333;
   border-radius: 12px;
-  padding: 1rem;
-  background: #1a1a1a;
-  color: white;
+  overflow: hidden;
+  transition:
+    transform 0.3s,
+    border-color 0.3s;
+  display: flex;
+  flex-direction: column;
+}
+
+.product-card:hover {
+  transform: translateY(-8px);
+  border-color: #646cff;
+}
+
+.image-wrapper {
+  width: 100%;
+  height: 200px;
+  background: #252525;
 }
 
 .product-image {
   width: 100%;
-  height: 200px;
+  height: 100%;
   object-fit: cover;
-  border-radius: 8px;
+}
+
+.product-info {
+  padding: 1.2rem;
+  text-align: center;
 }
 
 .product-name {
-  font-size: 1.1rem;
-  margin: 1rem 0;
+  font-size: 1rem;
+  margin-bottom: 0.8rem;
+  height: 2.5rem; /* Menjaga tinggi agar tetap sejajar */
+  overflow: hidden;
 }
 
 .product-price {
   color: #4caf50;
-  font-weight: bold;
+  font-weight: 800;
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
 }
 
 .btn-detail {
   width: 100%;
-  padding: 0.6rem;
+  padding: 10px;
+  background: transparent;
+  color: #646cff;
+  border: 1px solid #646cff;
   border-radius: 6px;
-  background-color: #646cff;
-  color: white;
-  border: none;
   cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
 }
 
 .btn-detail:hover {
-  background-color: #535bf2;
+  background: #646cff;
+  color: white;
 }
 
-/* CSS pindahan dari App.jsx */
-
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+/* Responsivitas */
+@media (max-width: 1024px) {
+  .product-grid {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+@media (max-width: 768px) {
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .search-box {
+    flex-direction: column;
+    align-items: center;
+  }
+  .search-input {
+    width: 100%;
   }
 }
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
+@media (max-width: 480px) {
+  .product-grid {
+    grid-template-columns: 1fr;
+  }
 }
